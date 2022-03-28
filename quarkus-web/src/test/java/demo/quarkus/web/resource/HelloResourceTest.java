@@ -1,15 +1,14 @@
 package demo.quarkus.web.resource;
 
+import demo.quarkus.web.service.HelloService;
+import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectSpy;
+import io.restassured.RestAssured;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.UUID;
-
-import demo.quarkus.web.service.HelloService;
-import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.mockito.InjectSpy;
-import io.restassured.RestAssured;
 
 /**
  * @author Jin Zheng
@@ -18,7 +17,7 @@ import io.restassured.RestAssured;
 @QuarkusTest
 public class HelloResourceTest {
     @InjectSpy
-    private HelloService helloService;
+    HelloService helloService;
 
     public HelloResourceTest() {
     }

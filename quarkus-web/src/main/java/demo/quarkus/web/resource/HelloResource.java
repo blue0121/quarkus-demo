@@ -1,14 +1,13 @@
 package demo.quarkus.web.resource;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
+import demo.quarkus.web.config.HelloProperties;
+import demo.quarkus.web.service.HelloService;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-
-import demo.quarkus.web.service.HelloService;
 
 /**
  * @author Jin Zheng
@@ -17,13 +16,13 @@ import demo.quarkus.web.service.HelloService;
 @Path("/hello")
 public class HelloResource {
 	@Inject
-	private Logger logger;
-
-	@ConfigProperty(name = "hello.welcome")
-	private String welcome;
+	Logger logger;
 
 	@Inject
-	private HelloService helloService;
+	HelloProperties helloProperties;
+
+	@Inject
+	HelloService helloService;
 
 	@GET
 	@Path("/greeting/{name}")
@@ -34,6 +33,6 @@ public class HelloResource {
 
 	@GET
 	public String hello() {
-		return welcome;
+		return helloProperties.welcome();
 	}
 }

@@ -13,10 +13,10 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class HelloService {
 	@Inject
-	private Logger logger;
+	Logger logger;
 
 	@ConfigProperty(name = "hello.greeting")
-	private String greeting;
+	String greeting;
 
 	public String greeting(String name) {
 		logger.info("Name: {}, Logger: {}", name, logger.hashCode());
