@@ -1,13 +1,15 @@
 package demo.quarkus.web.resource;
 
-import demo.quarkus.web.config.HelloProperties;
-import demo.quarkus.web.service.HelloService;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+
+import demo.quarkus.web.config.HelloProperties;
+import demo.quarkus.web.resource.vo.GreetingResponse;
+import demo.quarkus.web.service.HelloService;
 
 /**
  * @author Jin Zheng
@@ -26,9 +28,10 @@ public class HelloResource {
 
 	@GET
 	@Path("/greeting/{name}")
-	public String greeting(@PathParam("name") String name) {
+	public GreetingResponse greeting(@PathParam("name") String name) {
 		logger.info("Name: {}, Logger: {}", name, logger.hashCode());
-		return helloService.greeting(name);
+		var message = helloService.greeting(name);
+		return new GreetingResponse(name, message);
 	}
 
 	@GET

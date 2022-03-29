@@ -1,14 +1,16 @@
 package demo.quarkus.web.resource;
 
-import demo.quarkus.web.service.HelloService;
-import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.mockito.InjectSpy;
-import io.restassured.RestAssured;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.UUID;
+
+import demo.quarkus.web.service.HelloService;
+import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectSpy;
+import io.restassured.RestAssured;
 
 /**
  * @author Jin Zheng
@@ -35,7 +37,8 @@ public class HelloResourceTest {
         Mockito.when(helloService.greeting(Mockito.eq(uuid))).thenReturn("Hello");
         RestAssured.given().pathParam("name", uuid).when().get("/hello/greeting/{name}").then()
                 .statusCode(200)
-                .body(CoreMatchers.is("Hello"));
+                .body("name", CoreMatchers.is(uuid))
+                .body("message", CoreMatchers.is("Hello"));
     }
 
     @Test
@@ -43,6 +46,7 @@ public class HelloResourceTest {
         String uuid = UUID.randomUUID().toString();
         RestAssured.given().pathParam("name", uuid).when().get("/hello/greeting/{name}").then()
                 .statusCode(200)
-                .body(CoreMatchers.is("Hello," + uuid));
+                .body("name", Matchers.is(uuid))
+                .body("message", Matchers.is("Hello," + uuid));
     }
 }
