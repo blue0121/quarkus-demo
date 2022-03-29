@@ -59,9 +59,7 @@
 				<configuration>
 					<release>${jdk.version}</release>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<compilerArgs>
-						<arg>-parameters</arg>
-					</compilerArgs>
+					<parameters>true</parameters>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
