@@ -1,14 +1,13 @@
 package demo.quarkus.web.dao;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import demo.quarkus.web.entity.User;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 
 /**
@@ -16,7 +15,7 @@ import io.quarkus.test.junit.QuarkusTest;
  * @since 2022-03-29
  */
 @QuarkusTest
-@Transactional
+@TestTransaction
 public class UserDaoTest {
     @Inject
     EntityManager entityManager;
@@ -25,11 +24,6 @@ public class UserDaoTest {
     UserDao userDao;
 
     public UserDaoTest() {
-    }
-
-    @BeforeEach
-    public void beforeEach() {
-        entityManager.createQuery("delete from User").executeUpdate();
     }
 
     @Test
