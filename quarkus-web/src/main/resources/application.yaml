@@ -12,8 +12,9 @@ quarkus:
     password: mgmt
     jdbc:
       url: jdbc:postgresql://localhost:5432/mgmt
+      initial-size: 1
+      min-size: 1
       max-size: 10
-      min-size: 2
 
   hibernate-orm:
     database:
