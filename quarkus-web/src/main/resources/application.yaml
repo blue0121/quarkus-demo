@@ -3,6 +3,8 @@ hello:
   welcome: Hello World
 
 quarkus:
+  shutdown:
+    timeout: 30s
   http:
     port: 8080
     test-port: 9000
