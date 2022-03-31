@@ -39,9 +39,7 @@ public class UserService {
         return userDao.get(user.getId());
     }
 
-    public void delete(Integer id) {
-        User user = new User();
-        user.setId(id);
-        userDao.delete(user);
+    public int delete(Integer id) {
+        return userDao.delete(id);
     }
 }

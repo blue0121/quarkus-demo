@@ -37,8 +37,10 @@ public class UserDao {
         em.merge(user);
     }
 
-    public void delete(User user) {
-        em.remove(user);
+    public int delete(Integer id) {
+        var query = em.createQuery("delete from User where id=:id");
+        query.setParameter("id", id);
+        return query.executeUpdate();
     }
 
 }

@@ -1,5 +1,8 @@
 package demo.quarkus.web.resource.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import demo.quarkus.web.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +24,16 @@ public class UserResponse {
         response.setId(user.getId());
         response.setName(user.getName());
         return response;
+    }
+
+    public static List<UserResponse> fromEntity(List<User> list) {
+        List<UserResponse> responseList = new ArrayList<>();
+        if (list == null || list.isEmpty()) {
+            return responseList;
+        }
+        for (var user : list) {
+            responseList.add(fromEntity(user));
+        }
+        return responseList;
     }
 }
