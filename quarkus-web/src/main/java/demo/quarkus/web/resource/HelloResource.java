@@ -29,7 +29,7 @@ public class HelloResource {
 	@GET
 	@Path("/greeting/{name}")
 	public GreetingResponse greeting(@PathParam("name") String name) {
-		logger.info("Name: {}, Logger: {}", name, logger.hashCode());
+		logger.info("Name: {}", name);
 		var message = helloService.greeting(name);
 		return new GreetingResponse(name, message);
 	}
