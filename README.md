@@ -1,4 +1,4 @@
-# quarkus-demo
+# quarkus-demo [![Build and Test](https://github.com/blue0121/quarkus-demo/actions/workflows/maven.yml/badge.svg)](https://github.com/blue0121/quarkus-demo/actions/workflows/maven.yml)
 学习Quarkus
 
 ## 资源
